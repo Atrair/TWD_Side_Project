@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load mammoth_template_tags %}
+{% load socialaccount %}
+
+<html>
+    <head>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/base_style.css' %}" />
+		{% block style_block %}
+		{% endblock %}
+
+        <title>
+            Woolly Mammoth -
+            {% block title_block %}
+                Lets cause a hooley and get woolly!
+            {% endblock %}
+        </title>
+    </head>
+	
+    <body>
+        <div class="header">
+
+    		<div class="inner_header">
+        		<div class="logo_container">
+                    <a href="{% url 'mammoth:index' %}"><h1>Woolly<span>Mammoth</span></h1></a>
+        		</div>
+        		<ul class="navigation">
+
+					<a href="{% url 'mammoth:search' %}"><li>Search</li></a>
+
+
+
+					<a href="{% url 'mammoth:about_us' %}"><li>About Us</li></a>
+            		<a href="{% url 'mammoth:gallery' %}"><li>Gallery</li></a>
+            		<a href="{% url 'mammoth:contact_us' %}"><li>Contact Us</li></a>
+                  
+            		
+            		{% if user.is_authenticated %}
+                    <a href="{% url 'mammoth:share_your_pattern' %}"><li>Share Your Pattern</li></a>
+            			<a href="{% url 'mammoth:logout' %}"><li>Sign Out</li></a> 
+             		{% else %}
+            			<a href="{% url 'mammoth:register' %}"><li>Sign Up</li></a>
+             		{% endif %}
+        		</ul> 
+   			</div>
+
+		</div> 
+
+        {% block login_block %}
+          <div class="login"> 
+              {% if user.is_authenticated %}
+ 					Welcome, {{ user.username }}! <br />
+				{% else %}
+					Hey there visitor!
+             <button style="padding: 0 15px; float: right;">
+							<a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
+					</button>
+              <button style="padding: 0 15px; float: right;">
+						<a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a>
+					</button>
+				
+                                                                           
+					<form style="padding: 0 15px; float: right;" id="login_form" method="post" action="{% url 'mammoth:login' %}">
+						{% csrf_token %}
+						<strong>Login</strong> Username: <input type="text" name="username" value="" size="15" />
+						Password: <input type="password" name="password" value="" size="15" />
+						<input type="submit" value="submit" />
+					</form> 
+
+
+
+				{% endif %}
+			</div>
+        {% endblock %}
+        
+		
+
+		<!-- Reports the status of a recently done action -->
+		{% block status_block %}
+		{% endblock %}
+ 
+		<div class="popup" onclick="myFunction()"><img src="{% static "images/mammoth4.png" %}" alt="Woolly Mammoth logo">
+  <span class="popuptext" id="myPopup"> 
+<p>The woolly mammoth was roughly the size of a modern African elephant.<br/>
+      
+The ears of a woolly mammoth were shorter than the modern elephant’s ears.<br/>
+      
+This was to reduce frostbite and heat loss.<br/>
+      
+A woolly mammoth's tusk contains rings, like a tree that can determine its age.<br/>
+      
+The woolly mammoth co-existed with the woolly rhinoceros, also known as the Coelodonta during the Pleistocene epoch.<br/>
+      
+The first fully documented woolly mammoth skeleton was discovered in 1799.<br/>
+      
+A woolly mammoth's coat has an undercoat of short hair and an outercoat of log foot long hairs called a guard.<br/>
+      
+The final resting place of woolly mammoths was Wrangel Island in the Arctic. <br/>
+      
+Most of the woolly mammoth population died out by 10,000 years ago.</p>
+</span>
+</div>
+
+<script>
+// When the user clicks on div, open the popup
+function myFunction() {
+  var popup = document.getElementById("myPopup");
+  popup.classList.toggle("show");
+}
+</script>
+	
+        <div class="main">
+          
+    <br />
+			{% block body_block %}
+				This is body_block's default content.
+			{% endblock %}
+        </div>
+		
+       
+		
+		  <div class="footer">
+            <div class="inner_footer">
+        <div class="navigation">
+            <ul>
+				  <a href="{% url 'mammoth:knit_kit' %}"><li>Knit Kit</li></a>
+				<a href="{% url 'mammoth:site_map' %}"><li>Site Map</li></a>
+				<a href="{% url 'mammoth:faq' %}"><li>FAQ</li></a>
+            </ul>
+        </div>
+                </div>
+        </div>
+		
+    </body>
+</html>

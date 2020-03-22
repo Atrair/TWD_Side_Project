@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+{% extends 'mammoth/base.html' %}
+{% load staticfiles %}
+
+{% block style_block %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/share_your_pattern_style.css' %}" />
+{% endblock %}
+
+{% block title_block %}
+    Share Your Pattern
+{% endblock %}
+
+{% block body_block %}
+
+    <h2>Share Your Pattern</h2>
+    {% if user.is_authenticated %}
+
+        <div class="pattern_sharing_form">
+            <form id="pattern_form" method="post" action="{% url 'mammoth:share_your_pattern' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ pattern_form.as_p }}
+                <input type="submit" value="Share">
+            </form>
+        </div>
+    {% else %}
+        Login to share your pattern.
+    {% endif %}
+
+{% endblock %}

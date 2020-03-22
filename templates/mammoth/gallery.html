@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+{% extends 'mammoth/base.html' %}
+{% load staticfiles %}
+
+{% block style_block %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/gallery_style.css' %}" />
+{% endblock %}
+
+{% block title_block %}
+    Gallery
+{% endblock %}
+
+{% block body_block %}
+
+    <h2>Gallery</h2>
+
+    <br />
+    <p>Click on the patterns for comments and downloads.</p>
+    <br />
+
+    {% for pattern in all_patterns %}
+        <div class="gallery">
+            <div class="desc">{{ pattern.title }}</div>
+            <a href="{% url 'mammoth:pattern' pattern.slug %}">
+                <img src="{{ pattern.picture.url }}">
+            </a>
+        </div>
+    {% endfor %}
+
+{% endblock %}

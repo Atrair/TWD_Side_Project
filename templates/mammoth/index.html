@@ -1,0 +1,53 @@
+{% extends 'mammoth/base.html' %}
+{% load staticfiles %}
+
+{% block style_block %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/gallery_style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/onlineuser_style.css' %}" />
+{% endblock %}
+
+{% block title_block %}
+    Homepage
+{% endblock %}
+
+{% block status_block %}
+    {% if pattern_uploaded %}
+        <strong>Your pattern was successfully uploaded.</strong>
+    {% endif %}
+{% endblock %}
+
+{% block body_block %}
+   <h2>Lets cause a hooley and get woolly!</h2><br/>
+<p>Welcome to the Woolly Mammoth website. Please have a look around. We would love for you to sign up and share your patterns with us. We welcome comments on all existing patterns and encourage people to rate them.</p>
+<br/>
+
+<!-- Top 5 patterns -->
+<h4>Top 5 patterns...</h4>
+<br>
+        {% for pattern in patterns %}
+        <div class="gallery">
+            <div class="desc">{{ pattern.title }}</div>
+            <a href="{% url 'mammoth:pattern' pattern.slug %}">
+                <img src="{{ pattern.picture.url }}">
+            </a>
+        </div>
+    {% endfor %}
+  
+
+<!--Members online-->
+<div class="members">
+    <h4>Members online...</h4>
+     <br/>
+            {% for user in online_user %}
+            <div class= "online">
+                <img src="{{ user.userprofile.picture.url }}">
+                <div class="online_user_name"><span>{{ user.username }}</span></div>
+            </div>
+            {% endfor %}
+    </div>
+
+
+
+
+
+{% endblock %}

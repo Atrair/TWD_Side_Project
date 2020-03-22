@@ -1,0 +1,94 @@
+.pattern_image img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    float: left;
+    margin-right: 20px;
+}
+
+.pattern_description{
+    font-size: 16px;
+}
+x-star-bar{
+    font-family: "Ionicons";
+    font-size: 40px;
+    display: inline-flex;
+    cursor: pointer;
+}
+
+x-star-bar > .star:after{
+    content: '\f3ae';
+    color: #8b450d;
+}
+x-star-bar > .star.full:after{
+    content: '\f2fc';
+    color:  #8b450d;
+}
+/* Average Bar */
+x-avgstar-bar{
+    font-family: "Ionicons";
+    font-size: 40px;
+    display: inline-flex;
+    cursor: pointer;
+}
+x-avgstar-bar > .star:after{
+    content: '\f3ae';
+    color: #8b450d;
+}
+x-avgstar-bar > .star.full:after{
+    content: '\f2fc';
+    color:  #8b450d;
+}
+
+/* comment Bar */
+x-commentstar-bar{
+    font-family: "Ionicons";
+    font-size: 40px;
+    display: inline-flex;
+    cursor: pointer;
+}
+x-commentstar-bar > .star:after{
+    content: '\f3ae';
+    color: #8b450d;
+}
+x-commentstar-bar > .star.full:after{
+    content: '\f2fc';
+    color:  #8b450d;
+}
+.comment_list{
+    clear: both;
+    border: 2px solid gainsboro ;
+}
+.comment_submit{
+    clear: both;
+    margin-bottom: 20PX;
+    margin-top: 30PX;
+}
+
+.comment_image img {
+    width: 200px;
+    height:200px;
+    float: left;
+    padding-right: 10px;
+}
+
+.comment_content{
+    width: 100px;
+    font-size: 18px;
+    margin-left: 10px;
+    
+}
+
+.comment_block{
+    float: left;
+    width: 425px; 
+    font-size: 18px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    border: 2px solid #8b450d;
+    padding: 20px;
+    padding-bottom:10px;
+    background-color: antiquewhite;
+    clear:inherit;
+}
+
